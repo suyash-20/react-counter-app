@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 
+import { useSelector, useDispatch } from "react-redux";
+import { increment } from "../actions";
+
 class Counter extends Component {
-  //state is a class property
-  // state = {
-  //   value: this.props.counter.value,
-  //   tags: ["tag1"],
-
-  //Controlled component instead
-
   render() {
+    const counter = useSelector((state) => state.counterReducer);
+    const dispatch = useDispatch();
+
     return (
       <div>
         <span style={{ fontSize: 15 }} className={this.badgeColors()}>
@@ -16,7 +15,10 @@ class Counter extends Component {
         </span>
 
         <button
-          onClick={() => this.props.onIncrement(this.props.counter)}
+          onClick={
+            (() => this.props.onIncrement(this.props.counter),
+            () => dispatch(increment()))
+          }
           className="btn btn-success btn-sm m-2"
         >
           Increment

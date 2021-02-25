@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Counter from "./counter";
 
+import { increment } from "../actions";
+
 class Counters extends Component {
   state = {
     counters: [
